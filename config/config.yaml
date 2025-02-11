@@ -1,0 +1,46 @@
+# Configurações gerais
+project:
+  name: "AcidenteInSight"
+  version: "1.0"
+  description: "Análise e predição de acidentes de trânsito com dados do Infosiga"
+  author: "Diego Artero"
+
+# Configurações de Web Scraping
+scraping:
+  base_url: "https://www.infosiga.sp.gov.br/#referencia"
+  request_headers:
+    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+  output_format: "csv"  # Opções: csv, json, parquet
+  save_path: "data/raw/"
+
+# Banco de Dados
+database:
+  type: "postgresql"  # Opções: sqlite, mysql, postgresql
+  host: "localhost"
+  port: 5432
+  user: "admin"
+  password: "securepassword"
+  dbname: "acidentes"
+
+# Configurações de Machine Learning
+ml:
+  model_type: "RandomForestClassifier"  # Opções: LogisticRegression, RandomForestClassifier, XGBoost, etc.
+  test_size: 0.2
+  random_state: 42
+  features:
+    - "horario"
+    - "dia_semana"
+    - "clima"
+    - "tipo_acidente"
+    - "idade_condutor"
+    - "veiculo"
+
+# Configuração de Logs
+logging:
+  level: "INFO"  # Opções: DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/acidenteinsight.log"
+
+# Configuração de Visualização de Dados
+visualization:
+  tool: "matplotlib"  # Opções: matplotlib, seaborn, plotly
+  theme: "darkgrid"

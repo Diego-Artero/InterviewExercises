@@ -169,3 +169,25 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Web Scraping e Dados
+/data/  
+*.csv  
+*.json  
+*.xlsx  
+
+# Ambientes Virtuais
+venv/  
+.env  
+__pycache__/  
+*.pyc  
+*.pyo  
+
+# Logs e Cache
+logs/  
+*.log  
+cache/  
+
+# Streamlit
+.streamlit/  
+

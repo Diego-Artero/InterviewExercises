@@ -10,6 +10,7 @@ import time
 import os
 import yaml
 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 # Carregar configurações do YAML
 CONFIG_PATH = "AcidenteInSight/config/config.yaml"
 
@@ -19,8 +20,8 @@ def load_config():
 
 config = load_config()
 BASE_URL = config["scraping"]["base_url"]
-DOWNLOAD_DIR = os.path.abspath(config["scraping"]["save_path"])
-
+DOWNLOAD_DIR = os.path.join(BASE_DIR, config["scraping"]["save_path"])
+print(DOWNLOAD_DIR)
 # Garantir que a pasta de download exista
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 

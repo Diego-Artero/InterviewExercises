@@ -174,7 +174,8 @@ cython_debug/
 /data/  
 *.csv  
 *.json  
-*.xlsx  
+*.xlsx 
+*.zip
 
 # Ambientes Virtuais
 venv/  
@@ -190,4 +191,5 @@ cache/
 
 # Streamlit
 .streamlit/  
+
 

@@ -26,17 +26,17 @@ UNZIPPED_DIR = os.path.join(PROCESSED_DIR, "unzipped")
 FORMATTED_DIR = os.path.join(PROCESSED_DIR, "formatted")
 
 def extract_zip(zip_path, extract_dir):
-    """
-    Extrai o conteúdo do arquivo ZIP para o diretório especificado.
-    """
+    
+    #Extrai o conteúdo do arquivo ZIP para o diretório especificado.
+    
     with zipfile.ZipFile(zip_path, 'r') as zip_ref:
         zip_ref.extractall(extract_dir)
     print(f"Arquivos extraídos para: {extract_dir}")
 
 def parse_report(file_path):
-    """
-    Lê o arquivo de relatório (CSV ou Excel) e retorna um DataFrame.
-    """
+    
+    #Lê o arquivo de relatório (CSV ou Excel) e retorna um DataFrame.
+    
     if file_path.endswith('.csv'):
         df = pd.read_csv(file_path, encoding='latin1', delimiter=';')
     elif file_path.endswith(('.xls', '.xlsx')):

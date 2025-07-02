@@ -54,18 +54,11 @@ def download_latest_report():
         dados_abertos_btn.click()
         print("Seção 'Dados Abertos' expandida.")
 
-        # Selecionar o link correto para download (exemplo: "Óbitos")
-        download_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//h3/a[contains(text(), 'Óbitos')]")))
+        # Selecionar o link correto para download (exemplo: "Dados")
+        download_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//h3/a[contains(text(), 'Dados')]")))
         download_link.click()
-        print("Download dos Óbitos iniciado...")
+        print("Download dos Dados iniciado...")
 
-        download_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//h3/a[contains(text(), 'Sinistros Fatais')]")))
-        download_link.click()
-        print("Download dos Sinistros Fatais iniciado...")
-
-        download_link = wait.until(EC.element_to_be_clickable((By.XPATH, "//h3/a[contains(text(), 'Sinistros não Fatais')]")))
-        download_link.click()
-        print("Download dos Sinistros não Fatais iniciado...")
         # Esperar alguns segundos para garantir que o download termine
         time.sleep(10)
 

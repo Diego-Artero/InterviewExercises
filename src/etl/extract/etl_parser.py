@@ -47,37 +47,41 @@ def parse_report(file_path):
 
 if __name__ == "__main__":
     # Exemplo: o arquivo ZIP baixado deve estar na pasta raw
-    zip_file_obitos = os.path.join(DOWNLOAD_DIR, "obitos.zip")
-    zip_file_sinistros_fatais = os.path.join(DOWNLOAD_DIR, "sinistros_fatais.zip")
-    zip_file_sinistros_nao_fatais = os.path.join(DOWNLOAD_DIR, "sinistros_nao_fatais.zip")
-    zip_path_list = [zip_file_obitos, zip_file_sinistros_nao_fatais, zip_file_sinistros_fatais]
+    zip_file = os.path.join(DOWNLOAD_DIR, "dados_infosiga.zip")
     
     # Extrair o ZIP
-    for zip_path in zip_path_list:
-        extract_zip(zip_path, UNZIPPED_DIR)
+    extract_zip(zip_file, UNZIPPED_DIR)
     
     # Formatar corretamente os arquivos recém unzippados
-    obitos_file_path = os.path.join(UNZIPPED_DIR, "obitos.csv")
-    sinistros_nao_fatais_file_path2019 = os.path.join(UNZIPPED_DIR, "sinistros_nao_fatais_2019-2020.csv")
-    sinistros_nao_fatais_file_path2021 = os.path.join(UNZIPPED_DIR, "sinistros_nao_fatais_2021-2024.csv")
-    sinistros_fatais = os.path.join(UNZIPPED_DIR, "sinistros_fatais.csv")
-
-    file_path_list = [obitos_file_path, sinistros_nao_fatais_file_path2019, sinistros_nao_fatais_file_path2021, sinistros_fatais]
+    pessoas_2015_file_path = os.path.join(UNZIPPED_DIR, "pessoas_2015-2021.csv")
+    pessoas_2022_file_path = os.path.join(UNZIPPED_DIR, "pessoas_2022-2025.csv")
+    sinistros_2015_file_path = os.path.join(UNZIPPED_DIR, "sinistros_2015-2021.csv")
+    sinistros_2022_file_path = os.path.join(UNZIPPED_DIR, "sinistros_2022-2025.csv")
+    veiculos_2015_file_path = os.path.join(UNZIPPED_DIR, "veiculos_2015-2021.csv")
+    veiculos_2022_file_path = os.path.join(UNZIPPED_DIR, "veiculos_2022-2025.csv")
+    
+    pessoas_file_path_list = [pessoas_2015_file_path, pessoas_2022_file_path]
+    sinistros_file_path_list = [sinistros_2015_file_path, sinistros_2022_file_path]
+    veiculos_file_path_list = [veiculos_2015_file_path, veiculos_2022_file_path]
+    file_path_lists = [pessoas_file_path_list, 
+                      sinistros_file_path_list,
+                      veiculos_file_path_list]
     
     try:
-        for file_path in file_path_list:
-            df = parse_report(file_path)
-            print("Preview dos dados:")
-            print(df.head())
+        for file_path_list in file_path_lists:
+            df = pd.DataFrame()
+            for file_path in file_path_list:
+                dfaux = parse_report(file_path)
+                print("Preview dos dados:")
+                print(dfaux.head())
+                df = pd.concat([df, dfaux], ignore_index=True)
             
-            if file_path == obitos_file_path:
-                output_file = os.path.join(FORMATTED_DIR, "obitos.csv")
-            elif file_path == sinistros_nao_fatais_file_path2019:
-                output_file = os.path.join(FORMATTED_DIR, "sinistros_nao_fatais_2019-2020.csv")
-            elif file_path == sinistros_nao_fatais_file_path2021:
-                output_file = os.path.join(FORMATTED_DIR, "sinistros_nao_fatais_2021-2024.csv")
-            elif file_path == sinistros_fatais:
-                output_file = os.path.join(FORMATTED_DIR, "sinistros_fatais.csv")
+            if file_path_list == pessoas_file_path_list:
+                output_file = os.path.join(FORMATTED_DIR, "pessoas.csv")
+            elif file_path_list == sinistros_file_path_list:
+                output_file = os.path.join(FORMATTED_DIR, "sinistros.csv")
+            elif file_path_list == veiculos_file_path_list:
+                output_file = os.path.join(FORMATTED_DIR, "veiculos.csv")
             # Salvar o DataFrame processado
          
             df.to_csv(output_file, index=False)

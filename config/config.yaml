@@ -13,6 +13,7 @@ scraping:
   output_format: "csv"  # Opções: csv, json, parquet
   save_path: "data\\raw\\"
   save_path_processed: "data\\processed\\"
+  save_path_processed_formatted: "data\\processed\\formatted"
 
 # Banco de Dados
 database:

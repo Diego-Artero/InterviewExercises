@@ -14,6 +14,7 @@ scraping:
   save_path: "data\\raw\\"
   save_path_processed: "data\\processed\\"
   save_path_processed_formatted: "data\\processed\\formatted"
+  save_path_processed_cleaned: "data\\processed\\cleaned"
 
 # Banco de Dados
 database:

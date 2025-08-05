@@ -15,8 +15,10 @@ scraping:
   save_path_processed: "data\\processed\\"
   save_path_processed_formatted: "data\\processed\\formatted"
   save_path_processed_cleaned: "data\\processed\\cleaned"
+# No momento, tudo, daqui para baixo, é exemplo.
 
 # Banco de Dados
+
 database:
   type: "postgresql"  # Opções: sqlite, mysql, postgresql
   host: "localhost"

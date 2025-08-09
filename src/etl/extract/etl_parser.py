@@ -5,13 +5,13 @@ import yaml
 
 # Define a raiz do projeto subindo 3 níveis a partir deste script
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
-print("BASE_DIR:", BASE_DIR)
 # Caminho para o arquivo de configuração (relativo à raiz do projeto)
 CONFIG_PATH = os.path.join(BASE_DIR, "config", "config.yaml")
 
-def load_config():
+def load_config(CONFIG_PATH):
     with open(CONFIG_PATH, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
+
 
 config = load_config()
 
@@ -46,7 +46,7 @@ def parse_report(file_path):
     return df
 
 if __name__ == "__main__":
-    # Exemplo: o arquivo ZIP baixado deve estar na pasta raw
+    # O arquivo ZIP baixado deve estar na pasta raw
     zip_file = os.path.join(DOWNLOAD_DIR, "dados_infosiga.zip")
     
     # Extrair o ZIP

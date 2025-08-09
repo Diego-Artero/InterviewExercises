@@ -11,6 +11,7 @@ import os
 import yaml
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
+
 # Carregar configurações do YAML
 CONFIG_PATH = "AcidenteInSight/config/config.yaml"
 
@@ -21,14 +22,15 @@ def load_config():
 config = load_config()
 BASE_URL = config["scraping"]["base_url"]
 DOWNLOAD_DIR = os.path.join(BASE_DIR, config["scraping"]["save_path"])
-print(DOWNLOAD_DIR)
+
 # Garantir que a pasta de download exista
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
 
 # Criando o perfil do Firefox para configurar o diretório de download
 profile = FirefoxProfile()
-profile.set_preference("browser.download.folderList", 2)  # 2 = diretório personalizado
+profile.set_preference("browser.download.folderList", 2)
 profile.set_preference("browser.download.dir", DOWNLOAD_DIR)
+
 # Adicionando múltiplos MIME types que podem ser usados para arquivos zip
 profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/zip, application/octet-stream, application/x-zip-compressed")
 profile.set_preference("browser.download.useDownloadDir", True)

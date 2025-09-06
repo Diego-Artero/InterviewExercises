@@ -192,4 +192,7 @@ cache/
 # Streamlit
 .streamlit/  
 
-
+# Imagens
+.png/
+.jpeg/
+.jpg/

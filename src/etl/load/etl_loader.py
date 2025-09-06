@@ -3,12 +3,12 @@ import sqlite3
 import pandas as pd
 import yaml
 
-# Função modular que carrega as informaçoes do config.yaml
+# Config path setup
 def load_config(CONFIG_PATH):
     with open(CONFIG_PATH, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
 
-# Função modular que salva múltiplos DataFrames em tabelas de um banco SQLite
+# Loader function
 def save_dataframes_to_sqlite(DB_PATH, df_dict, if_exists="replace"):
     
     with sqlite3.connect(DB_PATH) as conn:
@@ -24,12 +24,12 @@ def process_and_load_data(pessoas_path, veiculos_path, sinistros_path, CONFIG_PA
         DB_DIR = os.path.abspath(os.path.join(BASE_DIR, config['database']['save_path_processed_databases']))
         DB_PATH = os.path.join(DB_DIR, "acidentes_infosiga.db")
 
-        # Ler os DataFrames
+        
         df_pessoas = pd.read_csv(pessoas_path)
         df_veiculos = pd.read_csv(veiculos_path)
         df_sinistros = pd.read_csv(sinistros_path)
 
-        # Chama a função modular que salva no banco
+        
         save_dataframes_to_sqlite(
             DB_PATH,
             {
@@ -50,6 +50,7 @@ if __name__ == "__main__":
     CONFIG_PATH = os.path.join(BASE_DIR, "config", "config.yaml")
 
     config = load_config(CONFIG_PATH)
+
     CLEANED_DIR = os.path.join(BASE_DIR, config["scraping"]["save_path_processed_cleaned"])
     PESSOAS_PATH = os.path.join(CLEANED_DIR, 'pessoas.csv')
     SINISTROS_PATH = os.path.join(CLEANED_DIR, 'sinistros.csv')
@@ -57,7 +58,7 @@ if __name__ == "__main__":
     
     process_and_load_data(
         PESSOAS_PATH,
-        SINISTROS_PATH,
         VEICULOS_PATH,
+        SINISTROS_PATH,
         CONFIG_PATH
     )

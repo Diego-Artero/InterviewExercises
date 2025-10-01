@@ -1,7 +1,5 @@
-"""
-Módulo de transformação e limpeza dos dados do Infosiga.
-"""
 
-from .etl_loader import process_and_load_data
 
-__all__ = ["process_and_load_data"]
+from .etl_loader_mongo import load_to_mongo
+from .etl_loader_postgres import load_to_postgres
+__all__ = ["load_to_mongo", "load_to_postgres"]

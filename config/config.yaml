@@ -1,28 +1,32 @@
-# Configurações gerais
 project:
   name: "AcidenteInSight"
   version: "1.0"
   description: "Análise e predição de acidentes de trânsito com dados do Infosiga"
   author: "Diego Artero"
 
-# Configurações de Web Scraping
-scraping:
-  base_url: "https://www.infosiga.sp.gov.br/#referencia"
-  request_headers:
-    User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-  output_format: "csv"  # Opções: csv, json, parquet
+# Parser settings
+parsing:
+  base_url: "meruvulikith/90000-cars-data-from-1970-to-2024"
+  output_format: "csv"
   save_path: "data\\raw\\"
   save_path_processed: "data\\processed\\"
   save_path_processed_formatted: "data\\processed\\formatted"
   save_path_processed_cleaned: "data\\processed\\cleaned"
-# No momento, tudo, daqui para baixo, é exemplo.
 
-# Banco de Dados
+# DataBases
 
-database:
-  save_path_processed_databases: "data\\processed\\databases"
+postgres:
+  host: "localhost"
+  port: 5432
+  database: "carsdb"
+  user: "diego"
+  password: "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e"
 
-# Configurações de Machine Learning
+mongodb:
+  uri: "mongodb://localhost:27017/"
+  database: "carsdb"
+  collection: "cars"
+# Machine learning configs
 ml:
   model_type: "RandomForestClassifier"  # Opções: LogisticRegression, RandomForestClassifier, XGBoost, etc.
   test_size: 0.2
@@ -35,12 +39,12 @@ ml:
     - "idade_condutor"
     - "veiculo"
 
-# Configuração de Logs
+# Logging config
 logging:
-  level: "INFO"  # Opções: DEBUG, INFO, WARNING, ERROR, CRITICAL
-  log_file: "logs/acidenteinsight.log"
+  level: "INFO"  
+  log_file: "logs/Inteviewexercises.log"
 
-# Configuração de Visualização de Dados
+# Data vis config
 visualization:
-  tool: "matplotlib"  # Opções: matplotlib, seaborn, plotly
+  tool: "matplotlib"  
   theme: "darkgrid"
